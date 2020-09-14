@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 function Movie({ movie, onRemove, onToggle }) {
   const { id, title, director, year, active } = movie;
@@ -6,6 +6,13 @@ function Movie({ movie, onRemove, onToggle }) {
     color: active ? "blue" : "black",
     cursor: "pointer",
   };
+
+  useEffect(() => {
+    console.log("movie 컴포넌트 마운트됨", movie);
+    return () => {
+      console.log("movie 컴포넌트 언마운트됨", movie);
+    };
+  }, [movie]);
   return (
     <div>
       <b style={style} onClick={() => onToggle(id)}>
