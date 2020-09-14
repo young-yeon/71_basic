@@ -24,6 +24,11 @@ function Movie({ movie, onRemove, onToggle }) {
 }
 
 function MovieList({ movieList, onRemove, onToggle }) {
+  const countActiveMovie = () => {
+    console.log("Active Music 개수 세기");
+    return movieList.filter((movie) => movie.active).length;
+  };
+  const count = useMemo(countActiveMovie, [movieList]);
   return (
     <>
       {movieList.map((item) => (
@@ -34,6 +39,8 @@ function MovieList({ movieList, onRemove, onToggle }) {
           onToggle={onToggle}
         />
       ))}
+      <hr />
+      <div>Active된 Movie 수 : {count}</div>
     </>
   );
 }
